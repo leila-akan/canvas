@@ -10,8 +10,8 @@
 	    border:5px solid #d3d3d3;
 	    background-color: #f1f1f1;
 	    display: block;
-			width: 80vw;
-			height: 80vh;
+			/* width: 80vw;
+			height: 80vh; */
 	}
 </style>
 </head>
@@ -25,19 +25,21 @@
 <script>
     var canvas = document.querySelector("#myCanvas");
     var ctx = canvas.getContext("2d");
-		var color = 'red'
+		var color = 'red';
+		var color_obj = document.getElementById('picker');
 
-
+canvas.width = window.innerWidth * 0.8;
+canvas.height = window.innerHeight * 0.8;
 
     function draw (x,y) {
         //use x and y below
 				ctx.fillStyle = color;
         console.log("I'M GONNA DRAW")
+				console.log(color_obj.value)
         ctx.beginPath();
         //this always draws in position 50,50
         ctx.arc(x,y,10,0,2 * Math.PI);
-        ctx.fill();
-    }
+        ctx.fill();}
 
     myCanvas.addEventListener(
         'mousemove', function (e){
@@ -66,10 +68,13 @@
 				if (e.key == ' '){
 					ctx.clearRect(0,0,canvas.width,canvas.height)
 				}
-
             // What should I do when I
             // press a key?
             // What information do I need from e?
         })
+		document.querySelector("#picker").addEventListener('change', function(e){
+         console.log(this.value)
+				 color = this.value;
+     })
 </script>
 </html>
