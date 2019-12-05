@@ -25,6 +25,7 @@
     var ctx = canvas.getContext("2d");
 		var color = 'red';
 		var color_obj = document.getElementById('picker');
+		var drawing = true;
 
 canvas.width = window.innerWidth * 0.8;
 canvas.height = window.innerHeight * 0.8;
@@ -34,10 +35,12 @@ canvas.height = window.innerHeight * 0.8;
 				ctx.fillStyle = color;
         console.log("I'M GONNA DRAW")
 				console.log(color_obj.value)
+				if (drawing == true){
         ctx.beginPath();
         //this always draws in position 50,50
         ctx.arc(x - 10,y - 10,10,0,2 * Math.PI);
         ctx.fill();}
+			}
 
     myCanvas.addEventListener(
         'mousemove', function (e){
@@ -65,6 +68,14 @@ canvas.height = window.innerHeight * 0.8;
 				}
 				if (e.key == ' '){
 					ctx.clearRect(0,0,canvas.width,canvas.height)
+				}
+				if (e.keyCode == '38'){
+				drawing = false;
+				console.log("pen up");
+				}
+				if (e.keyCode == '40'){
+				drawing = true;
+				console.log("pen down");
 				}
             // What should I do when I
             // press a key?
